@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css?family=Merriweather|Revalia&display=swap&subset=latin-ext" rel="stylesheet");
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
+:root {
+  --scenePerspective: 1;
+  --scenePerspectiveOriginX: 50;
+  --scenePerspectiveOriginY: 30;
+  --itemZ: 2;
+  --cameraSpeed: 150;
+  --cameraZ: 0;
+  --viewportHeight: 0;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  /* background: linear-gradient(to right, #a0c985 0%, #d9f1c8 100%); */
+  background-image: url('./okk.png');
+  background-repeat: no-repeat; 
+  background-size: cover;
+  color: white;
+  padding: 0;
+  margin: 0;
+  font-family: 'Courier New', Courier, monospace !important;
+  
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.title {
+  font-size: 150px;
+  font-family: 'Inspiration', cursive;
+  padding-left: 80px;
+}
+.time {
+  padding-left: 270px;
+}
+
+.viewport {
+  height: calc(var(--viewportHeight) * 1px);
+}
+
+.viewport .scene3D-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
+          perspective: calc(var(--scenePerspective) * var(--cameraSpeed) * 1px);
+  -webkit-perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
+          perspective-origin: calc(var(--scenePerspectiveOriginX) * 1%) calc(var(--scenePerspectiveOriginY) * 1%);
+  will-change: perspective-origin;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.viewport .scene3D-container .scene3D {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translateZ(calc(var(--cameraZ) * 1px));
+          transform: translateZ(calc(var(--cameraZ) * 1px));
+  will-change: transform;
+}
+
+.viewport .scene3D-container .scene3D > div {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 40%;
+}
+
+/* move element to left or right */
+.viewport .scene3D-container .scene3D > div:nth-child(2n) {
+  left: 0;
+  color: black;
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(2n + 1) {
+  right: 0;
+  color: white;
+
+}
+.viewport .scene3D-container .scene3D > div:last-child {
+  right: 0;
+  color: white;
+
+}
+/* end move element to left or right */
+
+.viewport .scene3D-container .scene3D > div:nth-child(0) {
+  -webkit-transform: translate3D(22%, 30%, calc(var(--itemZ) * var(--cameraSpeed) * 0 * -1px));
+          transform: translate3D(22%, 30%, calc(var(--itemZ) * var(--cameraSpeed) * 0 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(1) {
+  -webkit-transform: translate3D(10%, -3%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+          transform: translate3D(10%, -3%, calc(var(--itemZ) * var(--cameraSpeed) * 1 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(2) {
+  -webkit-transform: translate3D(-15%, -5%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+          transform: translate3D(-15%, -5%, calc(var(--itemZ) * var(--cameraSpeed) * 2 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(3) {
+  -webkit-transform: translate3D(5%, -44%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
+          transform: translate3D(5%, -44%, calc(var(--itemZ) * var(--cameraSpeed) * 3 * -1px));
+}
+
+.viewport .scene3D-container .scene3D > div:nth-child(4) {
+  -webkit-transform: translate3D(15%, -22%, calc(var(--itemZ) * var(--cameraSpeed) * 4 * -1px));
+          transform: translate3D(15%, -22%, calc(var(--itemZ) * var(--cameraSpeed) * 4 * -1px));
+}
+
+
+.scene3D > div {
+  padding: 2rem;
+}
+
+
+.scene3D > div:nth-child(0) {
+  background-color: transparent;
+}
+
+.scene3D > div:nth-child(1) {
+  background-color: transparent;
+}
+
+.scene3D > div:nth-child(2) {
+  background-color: transparent;
+}
+
+.scene3D > div:nth-child(3) {
+  background-color: transparent;;
+}
+
+.scene3D > div:nth-child(4) {
+  background-color: transparent;;
+}
+
+@media only screen and (min-width: 600px) {
+  .viewport .scene3D-container .scene3D > div {
+    width: 40%;
+  }
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 150px;
+  border: 1px solid transparent;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg) scaleX(2) scaleY(2);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 30px;
+  box-shadow: rgba(93, 92, 50, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: rgb(164, 189, 54);
+  color: white;
+  transform: rotateY(180deg);
+}
