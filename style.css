@@ -156,6 +156,12 @@ body {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .time {
+    padding-left: 120px;
+  }
+}
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
@@ -177,9 +183,6 @@ body {
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg) scaleX(2) scaleY(2);
-}
-.flip-card:active .flip-card-inner {
   transform: rotateY(180deg) scaleX(2) scaleY(2);
 }
 
